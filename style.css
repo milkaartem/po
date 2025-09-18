@@ -1,0 +1,559 @@
+body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+    color: white;
+}
+
+.container-main {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.header h1 {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.header .subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+    margin-bottom: 15px;
+}
+
+.header .app-title {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.header .description {
+    font-size: 16px;
+    opacity: 0.9;
+}
+
+.nav-tabs {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 25px;
+    border: none;
+    padding: 10px;
+    margin-bottom: 30px;
+    backdrop-filter: blur(10px);
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.nav-tab {
+    background: transparent;
+    color: rgba(255, 255, 255, 0.7);
+    border-radius: 20px;
+    padding: 12px 25px;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    cursor: default;
+    position: relative;
+}
+
+.nav-tab.active {
+    color: white;
+}
+
+.nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: white;
+    transition: all 0.3s ease;
+}
+
+.section-header {
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.section-subtitle {
+    font-size: 14px;
+    opacity: 0.8;
+}
+
+.trading-pairs {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+    width: 100%;
+}
+
+.trading-pairs.hidden {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+.time-frame-selection {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+    width: 100%;
+}
+
+.time-frame-selection.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.signal-selection {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 25px;
+    backdrop-filter: blur(10px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+    transform: translateY(0);
+    width: 100%;
+}
+
+.signal-selection.hidden {
+    opacity: 0;
+    transform: translateY(20px);
+    pointer-events: none;
+}
+
+.pair-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.pair-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.pair-info {
+    display: flex;
+    align-items: center;
+    flex: 1;
+}
+
+.pair-info-signal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto;
+}
+
+.pair-text-signal {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 5px;
+}
+
+.pair-slash {
+    font-size: 16px;
+    font-weight: 500;
+    margin: 0 5px;
+}
+
+.flag {
+    width: 24px;
+    height: 18px;
+    border-radius: 3px;
+    margin-right: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.flag img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 2px;
+}
+
+.arrow {
+    margin: 0 15px;
+    opacity: 0.7;
+}
+
+.action-labels {
+    display: flex;
+    gap: 10px;
+}
+
+.label-hot {
+    background: #FF6B35;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.label-otc {
+    background: #FFA500;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 12px;
+    font-weight: 600;
+    pointer-events: none;
+}
+
+.center-dot {
+    text-align: center;
+    margin: 20px 0;
+    font-size: 8px;
+    opacity: 0.5;
+}
+
+.time-frame-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.time-frame-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px; /* Space between icon and text */
+}
+
+.time-icon {
+    font-size: 30px; /* Adjust emoji size */
+    line-height: 1.2;
+    display: block;
+}
+
+.time-value, .time-description {
+    display: block;
+    line-height: 1.2;
+}
+
+.time-value {
+    font-weight: 600;
+}
+
+.time-description {
+    font-size: 14px;
+    opacity: 0.9;
+}
+
+.time-frame-item:hover {
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateY(-2px);
+}
+
+.time-frame-item i {
+    margin-right: 8px;
+}
+
+.recommendation {
+    font-size: 14px;
+    opacity: 0.8;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.selected-pair {
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.live-signal {
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.signal-window {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+    position: relative;
+}
+
+.circular-progress {
+    position: relative;
+    width: 100px;
+    height: 100px;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.progress-circle {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 8px solid rgba(255, 255, 255, 0.2); /* Полный круг */
+    border-top: 8px solid rgba(255, 255, 255, 0.5); /* Волновой эффект */
+    animation: spin 2.5s linear infinite;
+    position: absolute;
+    box-sizing: border-box;
+}
+
+.progress-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.signal-icon {
+    position: absolute;
+    top: 10%; /* Поднимаем выше, чтобы не перекрывать текст */
+    left: 50%;
+    transform: translateX(-50%); /* Сброс базового трансформа */
+    max-width: 100px;
+    max-height: 100px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.signal-icon.up {
+    transform: translateX(-50%) rotate(10deg); /* Поворот вправо на 10 градусов для up */
+}
+
+.signal-icon.down {
+    transform: translateX(-50%) rotate(-10deg); /* Поворот влево на 10 градусов для down */
+}
+
+.signal-text {
+    position: absolute;
+    bottom: 10px; /* Внизу блока */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 16px;
+    font-weight: 500;
+    color: white;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.btn-generate {
+    background: linear-gradient(90deg, #ff7e5f, #feb47b);
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    max-width: 250px;
+}
+
+.btn-back-to-time {
+    background: rgba(255, 255, 255, 0.2);
+    border: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+    max-width: 250px;
+}
+
+.btn-generate:hover, .btn-back-to-time:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+.btn-back {
+    background: #FF6B35;
+    border: none;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 600;
+    width: 100%;
+}
+
+.btn-back:hover {
+    opacity: 0.9;
+    transform: scale(1.05);
+}
+
+@media (max-width: 480px) {
+    .container-main {
+        padding: 15px;
+    }
+    
+    .pair-item {
+        padding: 12px 15px;
+    }
+    
+    .pair-text {
+        font-size: 14px;
+    }
+}
+
+.language-selector {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.language-button {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 10px 25px 10px 10px; /* Уменьшен левый padding для флага */
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    width: 150px;
+    text-align: left; /* Выравнивание влево для флага и текста */
+    position: relative;
+    display: flex; /* Горизонтальное расположение флага и текста */
+    align-items: center; /* Выравнивание по центру */
+    gap: 8px; /* Расстояние между флагом и текстом */
+}
+
+/* Текст кнопки */
+.button-text {
+    flex-grow: 1; /* Занимает оставшееся место */
+}
+
+/* Добавляем стрелку вниз */
+.language-button::after {
+    content: '▼';
+    font-size: 12px;
+    color: white;
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* Список языков */
+.language-menu {
+    display: none; /* Скрыт по умолчанию */
+    position: absolute;
+    top: 100%; /* Позиция сразу под кнопкой */
+    left: 50%; /* Сдвигаем на 50% от левого края контейнера */
+    transform: translateX(-50%); /* Смещаем назад на половину ширины для центрирования */
+    width: 150px; /* Фиксированная ширина, совпадающая с кнопкой */
+    background: rgba(102, 126, 234, 0.7); /* Соответствует градиенту сайта */
+    border-radius: 10px;
+    overflow: hidden;
+    z-index: 1000; /* Выше других элементов */
+    margin-top: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Стили для каждого элемента списка */
+.language-option {
+    padding: 10px 15px;
+    color: white;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.3s ease;
+    display: flex; /* Горизонтальное расположение флага и текста */
+    align-items: center; /* Выравнивание по центру */
+    gap: 8px; /* Расстояние между флагом и текстом */
+}
+
+/* Активный (выбранный) язык */
+.language-option.active {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+/* Эффект при наведении */
+.language-option:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+/* Стили для флага */
+.flag {
+    display: flex;
+    align-items: center;
+    visibility: visible; /* Убедимся, что флаг виден */
+}
+
+.flag img {
+    vertical-align: middle; /* Выравнивание изображения */
+    display: block; /* Убеждаемся, что изображение отображается */
+}
+
+/* Убедимся, что другие элементы не перекрывают меню */
+.container-main {
+    position: relative;
+    z-index: 1;
+}

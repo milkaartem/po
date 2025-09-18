@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trade Algo Bot</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container-main">
+        <!-- Header -->
+        <div class="header">
+    <div class="app-title">Trade Algo Bot</div>
+    <div class="description">Advanced Trading Signals</div>
+    <div class="language-selector">
+    <div class="language-button">
+        <div class="flag">
+            <img src="https://flagcdn.com/16x12/us.png" srcset="https://flagcdn.com/32x24/us.png 2x, https://flagcdn.com/48x36/us.png 3x" width="16" height="12" alt="United States">
+        </div>
+        <span class="button-text">English</span>
+    </div>
+    <div class="language-menu">
+        <div class="language-option active" data-lang="en">
+            <div class="flag">
+                <img src="https://flagcdn.com/16x12/us.png" srcset="https://flagcdn.com/32x24/us.png 2x, https://flagcdn.com/48x36/us.png 3x" width="16" height="12" alt="United States">
+            </div>
+            English
+        </div>
+        <div class="language-option" data-lang="ru">
+            <div class="flag">
+                <img src="https://flagcdn.com/16x12/ru.png" srcset="https://flagcdn.com/32x24/ru.png 2x, https://flagcdn.com/48x36/ru.png 3x" width="16" height="12" alt="Russia">
+            </div>
+            Русский
+        </div>
+        <div class="language-option" data-lang="es">
+            <div class="flag">
+                <img src="https://flagcdn.com/16x12/es.png" srcset="https://flagcdn.com/32x24/es.png 2x, https://flagcdn.com/48x36/es.png 3x" width="16" height="12" alt="Spain">
+            </div>
+            Español
+        </div>
+        <div class="language-option" data-lang="pt">
+            <div class="flag">
+                <img src="https://flagcdn.com/16x12/pt.png" srcset="https://flagcdn.com/32x24/pt.png 2x, https://flagcdn.com/48x36/pt.png 3x" width="16" height="12" alt="Portugal">
+            </div>
+            Português
+        </div>
+        <div class="language-option" data-lang="fr">
+            <div class="flag">
+                <img src="https://flagcdn.com/16x12/fr.png" srcset="https://flagcdn.com/32x24/fr.png 2x, https://flagcdn.com/48x36/fr.png 3x" width="16" height="12" alt="France">
+            </div>
+            Français
+        </div>
+    </div>
+</div>
+</div>
+        
+        <!-- Navigation Tabs (Static Blocks) -->
+        <div class="nav-tabs justify-content-center">
+            <div class="nav-tab active" data-tab="pairs">Pairs</div>
+            <div class="nav-tab" data-tab="time">Time</div>
+            <div class="nav-tab" data-tab="signal">Signal</div>
+        </div>
+        
+        <!-- Center Dot -->
+        <div class="center-dot">
+            <i class="fas fa-circle"></i>
+        </div>
+        
+        <!-- Trading Pairs (Initial Content) -->
+        <div class="trading-pairs">
+            <div class="section-header">
+                <div class="section-title">Most Popular Pairs</div>
+                <div class="section-subtitle">Choose your trading pair</div>
+            </div>
+            <div class="pair-item" data-pair="EUR/USD">
+                <div class="pair-info">
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/eu.png" srcset="https://flagcdn.com/32x24/eu.png 2x, https://flagcdn.com/48x36/eu.png 3x" width="16" height="12" alt="European Union">
+                    </div>
+                    <span class="pair-text">EUR</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/us.png" srcset="https://flagcdn.com/32x24/us.png 2x, https://flagcdn.com/48x36/us.png 3x" width="16" height="12" alt="United States">
+                    </div>
+                    <span class="pair-text">USD</span>
+                </div>
+                <div class="action-labels">
+                    <div class="label-hot">Hot</div>
+                    <div class="label-otc">OTC</div>
+                </div>
+            </div>
+            <div class="pair-item" data-pair="GBP/USD">
+                <div class="pair-info">
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/gb.png" srcset="https://flagcdn.com/32x24/gb.png 2x, https://flagcdn.com/48x36/gb.png 3x" width="16" height="12" alt="United Kingdom">
+                    </div>
+                    <span class="pair-text">GBP</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/us.png" srcset="https://flagcdn.com/32x24/us.png 2x, https://flagcdn.com/48x36/us.png 3x" width="16" height="12" alt="United States">
+                    </div>
+                    <span class="pair-text">USD</span>
+                </div>
+                <div class="action-labels">
+                    <div class="label-hot">Hot</div>
+                    <div class="label-otc">OTC</div>
+                </div>
+            </div>
+            <div class="pair-item" data-pair="USD/JPY">
+                <div class="pair-info">
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/us.png" srcset="https://flagcdn.com/32x24/us.png 2x, https://flagcdn.com/48x36/us.png 3x" width="16" height="12" alt="United Kingdom">
+                    </div>
+                    <span class="pair-text">USD</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/jp.png" srcset="https://flagcdn.com/32x24/jp.png 2x, https://flagcdn.com/48x36/jp.png 3x" width="16" height="12" alt="United States">
+                    </div>
+                    <span class="pair-text">JPY</span>
+                </div>
+                <div class="action-labels">
+                    <div class="label-hot">Hot</div>
+                    <div class="label-otc">OTC</div>
+                </div>
+            </div>
+            <div class="pair-item" data-pair="EUR/GBP">
+                <div class="pair-info">
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/eu.png" srcset="https://flagcdn.com/32x24/eu.png 2x, https://flagcdn.com/48x36/eu.png 3x" width="16" height="12" alt="United Kingdom">
+                    </div>
+                    <span class="pair-text">EUR</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/gb.png" srcset="https://flagcdn.com/32x24/gb.png 2x, https://flagcdn.com/48x36/gb.png 3x" width="16" height="12" alt="United States">
+                    </div>
+                    <span class="pair-text">GBP</span>
+                </div>
+                <div class="action-labels">
+                    <div class="label-hot">Hot</div>
+                    <div class="label-otc">OTC</div>
+                </div>
+            </div>
+            <div class="pair-item" data-pair="AUD/USD">
+                <div class="pair-info">
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/au.png" srcset="https://flagcdn.com/32x24/au.png 2x, https://flagcdn.com/48x36/au.png 3x" width="16" height="12" alt="United Kingdom">
+                    </div>
+                    <span class="pair-text">AUD</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/us.png" srcset="https://flagcdn.com/32x24/us.png 2x, https://flagcdn.com/48x36/us.png 3x" width="16" height="12" alt="United States">
+                    </div>
+                    <span class="pair-text">USD</span>
+                </div>
+                <div class="action-labels">
+                    <div class="label-otc">OTC</div>
+                </div>
+            </div>
+            <div class="pair-item" data-pair="USD/CHF">
+                <div class="pair-info">
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/us.png" srcset="https://flagcdn.com/32x24/us.png 2x, https://flagcdn.com/48x36/us.png 3x" width="16" height="12" alt="United Kingdom">
+                    </div>
+                    <span class="pair-text">USD</span>
+                    <i class="fas fa-arrow-right arrow"></i>
+                    <div class="flag">
+                        <img src="https://flagcdn.com/16x12/ch.png" srcset="https://flagcdn.com/32x24/ch.png 2x, https://flagcdn.com/48x36/ch.png 3x" width="16" height="12" alt="United States">
+                    </div>
+                    <span class="pair-text">CHF</span>
+                </div>
+                <div class="action-labels">
+                    <div class="label-hot">Hot</div>
+                    <div class="label-otc">OTC</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Time Frame Selection -->
+        <div class="time-frame-selection hidden">
+            <div class="section-header">
+                <div class="section-title">Select Time Frame</div>
+                <div class="section-subtitle">Choose your analysis period</div>
+            </div>
+            <div class="time-frame-options">
+    <div class="time-frame-item" data-time="5s">
+        <span class="time-icon">⚡</span>
+        <span class="time-value">5s</span>
+        <span class="time-description">Ultra Fast</span>
+    </div>
+    <div class="time-frame-item" data-time="10s">
+        <span class="time-icon">🔥</span>
+        <span class="time-value">10s</span>
+        <span class="time-description">Fast</span>
+    </div>
+    <div class="time-frame-item" data-time="15s">
+        <span class="time-icon">⭐</span>
+        <span class="time-value">15s</span>
+        <span class="time-description">Medium</span>
+    </div>
+    <div class="time-frame-item" data-time="30s">
+        <span class="time-icon">🕒</span>
+        <span class="time-value">30s</span>
+        <span class="time-description">Stable</span>
+    </div>
+</div>
+            <div class="recommendation">Recommended: 60 seconds is optimal for quick signals with good accuracy</div>
+            <button class="btn btn-back">Back to Pairs</button>
+        </div>
+
+        <!-- Signal Selection -->
+        <div class="signal-selection hidden">
+            <div class="section-header">
+                <div class="section-title">Signal Processing</div>
+                <div class="section-subtitle">Analyzing your selected pair</div>
+            </div>
+            <div class="selected-pair">
+                <div class="pair-info-signal">
+                    <div class="flag">
+                        <img src="" id="signal-flag1" srcset="" width="16" height="12" alt="">
+                    </div>
+                    <span class="pair-text-signal" id="signal-pair1"></span>
+                    <span class="pair-slash">/</span>
+                    <div class="flag">
+                        <img src="" id="signal-flag2" srcset="" width="16" height="12" alt="">
+                    </div>
+                    <span class="pair-text-signal" id="signal-pair2"></span>
+                </div>
+            </div>
+            <div class="live-signal">Live Signal | <span id="selected-time-text"></span> Frame</div>
+            <div class="signal-window" id="signal-window">
+                <div class="circular-progress" id="circular-progress">
+                    <div class="progress-circle"></div>
+                    <div class="progress-text" id="progress-text">0%</div>
+                </div>
+                <img class="signal-icon" id="signal-icon" src="" alt="Signal Icon">
+                <div class="signal-text" id="signal-text"></div>
+            </div>
+            <div class="action-buttons">
+                <button class="btn btn-generate">Generate New Signal</button>
+                <button class="btn btn-back-to-time">Back to Time</button>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
