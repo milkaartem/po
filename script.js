@@ -320,21 +320,43 @@ document.querySelector('.btn-generate').addEventListener('click', function() {
 
 // Function to start cooldown for button
 function startCooldown(button) {
-    let timeLeft = parseInt(selectedTime);
+    let timeLeft = parseInt(selectedTime); // Начальное время из выбранного интервала
     const lang = localStorage.getItem('language') || 'en';
-    button.disabled = true;
-    button.textContent = translations[lang].cooldownText.replace('{time}', timeLeft);
+    const startTime = Date.now(); // Время начала отсчета
+    const cooldownKey = 'cooldownState'; // Ключ для localStorage
 
-    const cooldownInterval = setInterval(() => {
-        timeLeft--;
-        if (timeLeft > 0) {
-            button.textContent = translations[lang].cooldownText.replace('{time}', timeLeft);
-        } else {
+    // Сохраняем начальное состояние
+    localStorage.setItem(cooldownKey, JSON.stringify({
+        timeLeft: timeLeft,
+        startTime: startTime,
+        isActive: true
+    }));
+
+    function updateCooldown() {
+        const state = JSON.parse(localStorage.getItem(cooldownKey) || '{}');
+        if (!state.isActive) return; // Если таймер не активен, выходим
+
+        const elapsed = Math.floor((Date.now() - state.startTime) / 1000); // Прошедшее время в секундах
+        timeLeft = Math.max(0, state.timeLeft - elapsed); // Оставшееся время
+
+        if (timeLeft <= 0) {
             clearInterval(cooldownInterval);
             button.disabled = false;
             button.textContent = translations[lang].generateButton;
+            localStorage.removeItem(cooldownKey); // Очищаем состояние
+        } else {
+            button.textContent = translations[lang].cooldownText.replace('{time}', timeLeft);
+            localStorage.setItem(cooldownKey, JSON.stringify({
+                timeLeft: timeLeft,
+                startTime: state.startTime,
+                isActive: true
+            }));
         }
-    }, 1000);
+    }
+
+    // Инициализируем таймер
+    updateCooldown(); // Сразу обновляем
+    const cooldownInterval = setInterval(updateCooldown, 1000); // Обновляем каждую секунду
 }
 
 // Function to get flag code based on currency
@@ -456,18 +478,34 @@ document.addEventListener('click', function(e) {
 document.addEventListener('DOMContentLoaded', () => {
     const savedLang = localStorage.getItem('language') || 'en';
     updateLanguage(savedLang);
-    document.querySelector(`.language-option[data-lang="${savedLang}"]`).classList.add('active');
     const activeOption = document.querySelector(`.language-option[data-lang="${savedLang}"]`);
+    if (activeOption) {
+        activeOption.classList.add('active');
+    } else {
+        console.error('Active option not found for lang:', savedLang);
+    }
     const buttonText = document.querySelector('.language-button .button-text');
     const buttonFlagImg = document.querySelector('.language-button .flag img');
-    if (activeOption && buttonText && buttonFlagImg) {
-        buttonText.textContent = activeOption.textContent; // Устанавливаем начальный текст
-        buttonFlagImg.src = activeOption.querySelector('.flag img').src; // Устанавливаем начальный флаг
-        buttonFlagImg.srcset = activeOption.querySelector('.flag img').srcset;
-        buttonFlagImg.alt = activeOption.querySelector('.flag img').alt;
-        console.log('Initialized button:', buttonText.textContent, buttonFlagImg.src); // Отладка
+    if (buttonText && buttonFlagImg) {
+        const activeOption = document.querySelector(`.language-option[data-lang="${savedLang}"]`);
+        if (activeOption) {
+            buttonText.textContent = activeOption.textContent; // Устанавливаем начальный текст
+            buttonFlagImg.src = activeOption.querySelector('.flag img').src; // Устанавливаем начальный флаг
+            buttonFlagImg.srcset = activeOption.querySelector('.flag img').srcset;
+            buttonFlagImg.alt = activeOption.querySelector('.flag img').alt;
+            console.log('Initialized button:', buttonText.textContent, buttonFlagImg.src); // Отладка
+        }
     } else {
-        console.error('Initialization failed:', buttonText, buttonFlagImg);
+        console.error('Initialization failed: Elements not found:', buttonText, buttonFlagImg);
     }
     document.querySelector('[data-tab="pairs"]').classList.add('active');
+
+    // Восстановление таймера при загрузке
+    const cooldownState = JSON.parse(localStorage.getItem('cooldownKey') || '{}');
+    if (cooldownState.isActive && selectedTime) {
+        const button = document.querySelector('.btn-generate');
+        if (button) {
+            startCooldown(button); // Запускаем таймер с восстановленным состоянием
+        }
+    }
 });
